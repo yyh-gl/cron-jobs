@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '50 21 * * 1,5'
 
+env:
+  SLACK_API_TOKEN: ${{ secrets.SLACK_API_TOKEN }}
+
 jobs:
   parking-payment-notification:
     name: Slackメッセージ定期削除
@@ -14,7 +17,7 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.15
-      - name: Instatll delsla
+      - name: Delete messages
         run: |
           GO111MODULE=off go get github.com/yyh-gl/delsla
           delsla -p
@@ -22,6 +25,6 @@ jobs:
         run: |
           curl -X POST \
                -H 'Content-type: application/json' \
-               -d '{
-                      "text": "全チャンネルにて、`date -d "3 days ago" '+\%Y年\%m月\%d日'` 以前のメッセージを削除しました。"
-                   }' ${{ secrets.SLACK_WEBHOOK_URL_TO_50 }}
+               -d "{
+                     \"text\": \"全チャンネルにて、$(date -d "3 days ago" '+%Y年%m月%d日') 以前のメッセージを削除しました。\"
+                   }" ${{ secrets.SLACK_WEBHOOK_URL_TO_50 }}
