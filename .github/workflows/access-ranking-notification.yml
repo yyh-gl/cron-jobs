@@ -1,0 +1,12 @@
+name: アクセスランキング通知
+
+on:
+  schedule:
+    - cron: '0 10,22 * * *'
+
+jobs:
+  access-ranking-notification:
+    name: アクセスランキング通知
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl --location --request POST '${{ secrets.ACCESS_RANKING_NOTIFICATION_ENDPOINT }}'
