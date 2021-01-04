@@ -1,0 +1,18 @@
+name: Hobigon管轄の通知ジョブ
+
+on:
+  schedule:
+    - cron: '0 6,4,10,22 * * *'
+
+jobs:
+  toda-tasks-notification:
+    name: 本日のタスク通知
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl --location --request POST '${{ secrets.TODAY_TASKS_NOTIFICATION_ENDPOINT }}'
+
+  access-ranking-notification:
+    name: アクセスランキング通知
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl --location --request POST '${{ secrets.ACCESS_RANKING_NOTIFICATION_ENDPOINT }}'
