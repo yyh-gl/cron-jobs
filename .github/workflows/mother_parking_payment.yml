@@ -1,0 +1,24 @@
+name: 駐車場代振込リマインド
+
+on:
+  schedule:
+    - cron: '0 0,3 1 * *'
+
+jobs:
+  parking-payment-notification:
+    name: 駐車場代振込リマインド
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -X POST \
+          -H 'Content-Type:application/json' \
+          -H 'Authorization: Bearer ${{ secrets.LINE_API_TOKEN }}' \
+          -d '{
+              "to": "${{ secrets.LINE_CHAT_ROOM_TO_MOTHER }}",
+              "messages":[
+                  {
+                  "type": "text",
+                  "text": "今日は駐車場代を振り込む日"
+              }
+              ]
+          }' https://api.line.me/v2/bot/message/push
