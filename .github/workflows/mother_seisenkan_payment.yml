@@ -1,6 +1,7 @@
 name: 生鮮館入金リマインド
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0,3 5,15,25 * *'
 

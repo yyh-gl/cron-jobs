@@ -1,6 +1,7 @@
 name: アクセスランキング通知
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 10,22 * * *'
 

@@ -1,9 +1,9 @@
 name: Slackメッセージ定期削除
 
 on:
+  workflow_dispatch:
   schedule:
-#    - cron: '50 21 * * 1,2,6'
-    - cron: '0 8 * * 1,2,6'
+    - cron: '50 21 * * 1,2,6'
 
 jobs:
   parking-payment-notification:
