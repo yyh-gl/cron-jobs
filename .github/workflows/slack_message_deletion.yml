@@ -3,7 +3,7 @@ name: Slackメッセージ定期削除
 on:
   workflow_dispatch:
   schedule:
-    - cron: '50 21 * * 1,2,6'
+    - cron: '50 21 * * 1,5'
 
 jobs:
   parking-payment-notification:
@@ -17,4 +17,4 @@ jobs:
           -H 'Content-type: application/json' \
           -d '{
                 "text": "全チャンネルにて、`date -d "3 days ago" '+\%Y年\%m月\%d日'` 以前のメッセージを削除しました。"
-              }' ${{ secrets.SLACK_WEBHOOK_TO_50 }}
+              }' ${{ secrets.SLACK_WEBHOOK_URL_TO_50 }}
