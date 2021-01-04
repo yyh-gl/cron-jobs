@@ -10,11 +10,18 @@ jobs:
     name: Slackメッセージ定期削除
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          go get github.com/yyh-gl/delsla
-          go/bin/delsla -p
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+      - name: Instatll delsla
+        run: |
+          GO111MODULE=off go get github.com/yyh-gl/delsla
+          delsla -p
+      - name: Notify
+        run: |
           curl -X POST \
-          -H 'Content-type: application/json' \
-          -d '{
-                "text": "全チャンネルにて、`date -d "3 days ago" '+\%Y年\%m月\%d日'` 以前のメッセージを削除しました。"
-              }' ${{ secrets.SLACK_WEBHOOK_URL_TO_50 }}
+               -H 'Content-type: application/json' \
+               -d '{
+                      "text": "全チャンネルにて、`date -d "3 days ago" '+\%Y年\%m月\%d日'` 以前のメッセージを削除しました。"
+                   }' ${{ secrets.SLACK_WEBHOOK_URL_TO_50 }}
