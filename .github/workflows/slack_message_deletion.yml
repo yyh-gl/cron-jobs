@@ -1,0 +1,19 @@
+name: Slackメッセージ定期削除
+
+on:
+  schedule:
+    - cron: '50 21 * * 2,6'
+
+jobs:
+  parking-payment-notification:
+    name: Slackメッセージ定期削除
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          go get github.com/yyh-gl/delsla
+          go/bin/delsla -p
+          curl -X POST \
+          -H 'Content-type: application/json' \
+          -d '{
+                "text": "全チャンネルにて、`date -d "3 days ago" '+\%Y年\%m月\%d日'` 以前のメッセージを削除しました。"
+              }' ${{ secrets.SLACK_WEBHOOK_TO_50 }}
