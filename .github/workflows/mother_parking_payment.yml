@@ -14,11 +14,11 @@ jobs:
           -H 'Content-Type:application/json' \
           -H 'Authorization: Bearer ${{ secrets.LINE_API_TOKEN }}' \
           -d '{
-              "to": "${{ secrets.LINE_CHAT_ROOM_TO_MOTHER }}",
-              "messages":[
+                "to": "${{ secrets.LINE_CHAT_ROOM_TO_MOTHER }}",
+                "messages":[
                   {
-                  "type": "text",
-                  "text": "今日は駐車場代を振り込む日"
-              }
-              ]
-          }' https://api.line.me/v2/bot/message/push
+                    "type": "text",
+                    "text": "今日は駐車場代を振り込む日"
+                  }
+                ]
+              }' https://api.line.me/v2/bot/message/push

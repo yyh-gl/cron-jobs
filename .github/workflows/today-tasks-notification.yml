@@ -1,4 +1,4 @@
-name: Hobigon管轄の通知ジョブ
+name: Hobigon管轄リソース関連の通知
 
 on:
   schedule:
