@@ -3,7 +3,8 @@ name: Slackメッセージ定期削除
 on:
   workflow_dispatch:
   schedule:
-    - cron: '50 21 * * 1,5'
+    # 毎週日曜, 水曜 6時50分（JST）
+    - cron: '50 21 * * 2,6'
 
 env:
   SLACK_API_TOKEN: ${{ secrets.SLACK_API_TOKEN }}

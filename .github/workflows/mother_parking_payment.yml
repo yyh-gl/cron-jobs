@@ -3,6 +3,7 @@ name: 駐車場代振込リマインド
 on:
   workflow_dispatch:
   schedule:
+    # 毎月1日 9, 12時（JST）
     - cron: '0 0,3 1 * *'
 
 jobs:
