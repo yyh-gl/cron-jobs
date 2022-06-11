@@ -2,9 +2,9 @@ name: アクセスランキング通知
 
 on:
   workflow_dispatch:
-  schedule:
+#  schedule:
     # 毎日 7, 19時（JST）
-    - cron: '0 10,22 * * *'
+#    - cron: '0 10,22 * * *'
 
 jobs:
   access-ranking-notification:
