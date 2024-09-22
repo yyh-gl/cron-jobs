@@ -1,0 +1,14 @@
+name: ポケカイベント通知
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 毎日 19時（JST）
+    - cron: '0 10 * * *'
+
+jobs:
+  toda-tasks-notification:
+    name: 本日のポケカイベント通知
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl --location --request POST '${{ secrets.POKEMON_EVENT_NOTIFICATION_ENDPOINT }}'
