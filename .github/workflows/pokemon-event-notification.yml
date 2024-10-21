@@ -3,8 +3,8 @@ name: ポケカイベント通知
 on:
   workflow_dispatch:
   schedule:
-    # 毎日 19時（JST）
-    - cron: '0 10 * * *'
+    # 毎日 12時（JST）
+    - cron: '0 3 * * *'
 
 jobs:
   toda-tasks-notification:
